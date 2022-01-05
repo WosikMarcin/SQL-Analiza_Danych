@@ -1,3 +1,5 @@
+------------------------------------------------FILTROWANIE-------------------------------------------------------------
+
 1).Napisz zapytania, które wyświetlą informacje (sakila.rental) na podstawie poniższych kryteriów:
 a) wypożyczeniach z roku 2005,
 b) wypożyczeniach z dnia 2005-05-24,
@@ -58,4 +60,110 @@ WHERE films_amount > 20 AND avg_film_rate > 3.3;
 c).
 SELECT first_name,last_name,films_amount,avg_film_rate,actor_payload FROM sakila19_5.actor_analytics
 WHERE films_amount > 20 AND avg_film_rate > 3.3 OR actor_payload > 2000;
+
+----------------------------------------FORMATOWANIE DANYCH WYJSCIOWYCH-------------------------------------------------
+
+1).Wyświetl dane z sakila.rental nadając aliasy dla kolumn według poniższych wymagań:
+
+a).kolumny rental_id, inventory_id, customer_id pozostaw bez zmian,
+b).zmień kolumnę rental_date na date_of_rental,
+c).zmień kolumnę return_date na date_of_rental_return,
+d).kolumny wypisz w wybranej przez siebie kolejności
+
+a).
+SELECT rental_id,rental_date AS Data_Wynajmu,inventory_id,customer_id,return_date AS Data_Zwrotu,staff_id AS Identyfikator_Personelu,
+last_update AS Ostatnia_Aktualizacja FROM sakila19_5.rental;
+b).
+SELECT rental_date AS date_of_rental FROM sakila19_5.rental;
+c).
+SELECT return_date AS date_of_rental_return FROM sakila19_5.rental;
+
+2).Wyświetl dane z sakila.rental tłumacząc przy tym nazwy kolumn z angielskiego na polski według poniższych wymagań:
+
+a).rental_id - id wypożyczenia,
+b).inventory_id - id przedmiotu,
+c).rental_date - data wypożyczenia,
+d).return_date - data zwrotu.
+
+a).
+SELECT rental_id "id wypożyczenia" FROM sakila19_5.rental;
+b).
+SELECT inventory_id "id przedmiotu" FROM sakila19_5.rental;
+c).
+SELECT rental_date "data wypożyczenia" FROM sakila19_5.rental;
+d)
+SELECT return_date "data zwrotu" FROM sakila19_5.rental;
+
+3).W tabeli sakila.payment znajdują się informacje o płatnościach dokonywanych przez klientów wypożyczalni DVD.
+Napisz kwerendę, która wyświetli kolumnę payment_date w następujących formatach:
+
+a).'rok/miesiąc/dzień',
+b).'rok-nazwa_miesiąca-dzień_tygodnia',
+c).'rok-numer_tygodnia',
+d).'rok/miesiąc/dzień@nazwa_dnia_tygodnia',
+e).'rok/miesiąc/dzień@numer_dnia_tygodnia'.
+
+a).
+SELECT DATE_FORMAT(payment_date,'%Y/%m/%d'),payment_date FROM sakila19_5.payment;
+b).
+SELECT DATE_FORMAT(payment_date,'%Y-%M-%w'),payment_date FROM sakila19_5.payment;
+c).
+SELECT DATE_FORMAT(payment_date,'%Y/%v'), payment_date FROM sakila19_5.payment;
+d).
+SELECT DATE_FORMAT(payment_date, '%Y/%m/%W'),payment_date FROM sakila19_5.payment;
+e).
+SELECT DATE_FORMAT(payment_date, '%Y/%m/%w'), payment_date FROM sakila19_5.payment;
+
+4).
+Zapoznaj się z metodą GET_FORMAT(), która posiada predefiniowane formaty wybranych standardów wyświetlania dat
+i sformatuj kolumnę payment_date z tabeli sakila.payment, zgodnie ze standardem USA.
+Tak powstałą kolumnę nazwij payment_date_usa_formatted.
+Wskazówka: użycie metody jest następujące - GET_FORMAT(DATE, NAZWA_FORMATU).
+
+SELECT DATE_FORMAT(payment_date,GET_FORMAT(DATE,'USA')) FROM sakila19_5.payment;
+
+5).
+Używając sakila.film_list, napisz i wykonaj kwerendę, która:
+
+a).zwróci najmniejszą wartość z kolumn price, length,
+b).zwróci najmniejszą wartość z kolumn price, length, rating.
+Jaka jest różnica pomiędzy wynikami podpunktu 1. oraz 2.? Skąd się ona bierze?
+
+a).
+SELECT LEAST(price,length) FROM sakila19_5.film_list;
+b).
+SELECT LEAST(price,length,rating) FROM sakila19_5.film_list;
+
+6).Na podstawie sakila.film_list napisz i wykonaj kwerendę, która:
+
+a).zwróci największą wartość z kolumn price, length,
+b).zwróci największą wartość z kolumn price, length, rating.
+Dodatkowo, obok wywołania samego GREATEST, w wyniku wyświetl kolumny składowe,
+które przekazujesz do funkcji, tj. np. price.
+
+a).
+SELECT GREATEST(price,length),price,length FROM sakila19_5.film_list;
+b).
+SELECT GREATEST(price,length,rating),price,length,rating FROM sakila19_5.film_list;
+
+-----------------------------------------------UNION--------------------------------------------------------------------
+
+1).Używając tabel:
+a).sakila.customer,
+b).sakila.actor,
+c).sakila.staff
+Wyświetl wszystkie imiona osób bez powtórzeń
+
+a).
+SELECT DISTINCT(first_name) FROM sakila19_5.customer;
+b).
+SELECT DISTINCT(first_name) FROM sakila19_5.actor;
+c).
+SELECT DISTINCT(first_name) FROM sakila19_5.staff;
+
+2).Korzystając z własności, że UNION zwraca domyślnie zbiór, zmodyfikuj poniższą kwerendę tak,
+aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT):
+
+SELECT * FROM sakila19_5.nicer_but_slower_film_list;
+
 
