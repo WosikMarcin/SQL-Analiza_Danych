@@ -164,6 +164,34 @@ SELECT DISTINCT(first_name) FROM sakila19_5.staff;
 2).Korzystając z własności, że UNION zwraca domyślnie zbiór, zmodyfikuj poniższą kwerendę tak,
 aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT):
 
-SELECT * FROM sakila19_5.nicer_but_slower_film_list;
+SELECT category FROM sakila19_5.nicer_but_slower_film_list
+UNION
+SELECT category FROM sakila19_5.nicer_but_slower_film_list;
+
+------------------------------------------------POZAPYTANIA-------------------------------------------------------------
+
+1).Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
+których całkowita sprzedaż przekracza połowę sprzedaży całkowitej wypożyczalni.
+
+SELECT * FROM sakila19_5.sales_by_store;
+SELECT * FROM sakila19_5.sales_total;
+
+SELECT * FROM sakila19_5.sales_by_store
+WHERE total_sales > ( SELECT total_sales/2 FROM sakila19_5.sales_total);
+
+2)Zapoznaj się ze strukturą sakila.rating_analytics, która posiada zagregowane informacje dotyczące poszczególnych
+ratingów filmowych oraz dla wszystkich filmów. Następnie wykonaj następujące działania:
+
+a).Analizując tylko strukturę danych, zastanów się, który wiersz może wyznaczać statystyki dla wszystkich ratingów
+(bez podziału na rating),
+b).Znajdź te ratingi, które są wyższe od średniej wyznaczonej dla wszystkich filmów, bez podziału na rating,
+c).Znajdź te ratingi, których średni czas wypożyczenia jest krótszy od średniej globalnej,
+d).Używając podzapytania wyświetl statystyki dla rating_id = 3,
+e).Używając podzapytania wyświetl statystyki dla rating_id = 3, 2, 5.
+f). Napisz kwerendę, która powie, który rating cieszy się największą popularnością.
+g). Napisz kwerendę, która odpowie, z którego ratingu filmy są średnio najkrótsze.
+
+Pamiętaj o usunięciu ratingu dla wszystkich filmów.
+
 
 
