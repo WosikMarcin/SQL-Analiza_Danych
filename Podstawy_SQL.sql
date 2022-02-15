@@ -173,9 +173,6 @@ SELECT category FROM sakila19_5.nicer_but_slower_film_list;
 1).Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
 których całkowita sprzedaż przekracza połowę sprzedaży całkowitej wypożyczalni.
 
-SELECT * FROM sakila19_5.sales_by_store;
-SELECT * FROM sakila19_5.sales_total;
-
 SELECT * FROM sakila19_5.sales_by_store
 WHERE total_sales > ( SELECT total_sales/2 FROM sakila19_5.sales_total);
 
@@ -191,14 +188,6 @@ e).Używając podzapytania wyświetl statystyki dla rating_id = 3, 2, 5.
 f). Napisz kwerendę, która powie, który rating cieszy się największą popularnością.
 g). Napisz kwerendę, która odpowie, z którego ratingu filmy są średnio najkrótsze.
 
-Pamiętaj o usunięciu ratingu dla wszystkich filmów.
-
-Znajdź te ratingi, które są wyższe od średniej wyznaczonej dla wszystkich filmów, bez podziału na rating
-b).
-
-SELECT * FROM sakila19_5.rating;
-SELECT * FROM sakila19_5.rating_analytics
-WHERE rating > ;
 c).
 SELECT * FROM sakila19_5.rating_analytics
 WHERE avg_rental_duration < (SELECT AVG(avg_rental_duration) FROM sakila19_5.rating_analytics);
@@ -209,5 +198,10 @@ e).
 SELECT * FROM sakila19_5.rating_analytics
 WHERE rating IN (SELECT rating FROM sakila19_5.rating WHERE id_rating IN (3,2,5));
 f)
-SELECT max(rentals) FROM sakila19_5.rating_analytics
-WHERE rentals
+SELECT rating,rentals FROM sakila19_5.rating_analytics
+WHERE rentals = (SELECT max(rentals) FROM sakila19_5.rating_analytics);
+g).
+SELECT rating, avg_film_length FROM sakila19_5.rating_analytics
+WHERE avg_film_length = (SELECT min(avg_film_length) FROM sakila19_5.rating_analytics);
+
+
