@@ -1,4 +1,4 @@
-------------------------------------------------FILTROWANIE-------------------------------------------------------------
+------------------------------------------------FILTROWANIE------------------------------------------------------------
 
 1).Napisz zapytania, które wyświetlą informacje (sakila.rental) na podstawie poniższych kryteriów:
 a) wypożyczeniach z roku 2005,
