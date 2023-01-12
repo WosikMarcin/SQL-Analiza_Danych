@@ -1,23 +1,34 @@
 --------------------------------------------------------TABELE---------------------------------------------------------
 1). Utwórz tabele my_first_table a nastepnie:
 a). dodaj kolumny first_col ( typ danych text ) i second_col ( typ danych datetime )
-b). usuń tabele my_first_table
+b). dodaj kolumne email ( typ danych znakowy o dlugosci 50 )
+c). usuń tabele my_first_table
 
 a).
 CREATE TABLE IF NOT EXISTS my_first_table(
-    first_col text,
-    second_col datetime
+first_col text,
+second_col datetime
 )
-b). DROP TABLE my_first_table
+b). 
+ALTER TABLE sakila.my_first_table
+ADD email VARCHAR(50)
+c). 
+DROP TABLE my_first_table
 
 2). Utwórz tabele actor_nick a nastepnie:
 a). wypełnij tabele na podstawie zapytania, ktore ma wyswietlic wszystkie dane z sakila.actor gdzie first_name to Nick 
-b). usuń tabele actor_nick
+b). dodaj kolumne phone ( typ danych numeryczny zakres (-128,127) )
+c). usuń tabele actor_nick
 
+a).
 CREATE TABLE IF NOT EXISTS actor_nick AS
 SELECT * FROM sakila.actor
 WHERE first_name = 'Nick'
-
+b).
+ALTER TABLE actor_nick
+ADD phone TINYINT
+c).
+DROP TABLE actor_nick
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
 1).Napisz zapytania, które wyświetlą informacje (sakila.rental) na podstawie poniższych kryteriów:
