@@ -100,13 +100,13 @@ b). klientów, którzy mają adres email w innej domenie niż sakilacustomer.org
 c). klientów o unikalnych wartościach w kolumnie create_date.
 
 a).
-SELECT first_name,last_name,active, store_id FROM sakila19_5.customer
-WHERE active = '0' AND store_id = '1';
+SELECT first_name, last_name, active, store_id FROM sakila.customer
+WHERE active = 0 AND store_id = 1 
 b).
-SELECT first_name,last_name,email FROM sakila19_5.customer
-WHERE email NOT LIKE '%sakilacustomer.org';
+SELECT first_name, last_name, email FROM sakila.customer
+WHERE email NOT LIKE '%sakilacustomer.org'
 c).
-SELECT DISTINCT(create_date) FROM sakila19_5.customer;
+SELECT DISTINCT create_date FROM sakila.customer;
 
 4) Zapoznaj się ze strukturą sakila.actor_analytics a następnie napisz kwerendy, które:
 a). wyświetlą aktorów, którzy grali w ponad 25 filmach,
