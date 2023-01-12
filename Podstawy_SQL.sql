@@ -72,7 +72,7 @@ a 2005-08-31 od pracownika Jon'a (sprawdź najpierw jaki ma staff_id w sakila.st
 
 a).
 SELECT rental_date FROM sakila19_5.rental
-WHERE rental_date BETWEEN '2005-01-01' AND '2005-05-31';
+WHERE rental_date BETWEEN '2005-01-01' AND '2005-12-31';
 b).
 SELECT rental_date FROM sakila19_5.rental
 WHERE rental_date BETWEEN '2005-05-24 00:00:00' AND '2005-05-24 23:59:59';
