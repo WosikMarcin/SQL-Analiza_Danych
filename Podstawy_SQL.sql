@@ -71,17 +71,17 @@ d) wypożyczeniach w trakcie wakacji, tj. pomiędzy 2005-06-30,
 a 2005-08-31 od pracownika Jon'a (sprawdź najpierw jaki ma staff_id w sakila.staff).'
 
 a).
-SELECT rental_date FROM sakila19_5.rental
-WHERE rental_date BETWEEN '2005-01-01' AND '2005-12-31';
+SELECT rental_date FROM sakila.rental
+WHERE rental_date BETWEEN '2005-01-01 00:00:00' AND '2005-12-31 23:59:59'
 b).
-SELECT rental_date FROM sakila19_5.rental
-WHERE rental_date BETWEEN '2005-05-24 00:00:00' AND '2005-05-24 23:59:59';
+SELECT rental_date FROM sakila.rental
+WHERE rental_date BETWEEN '2005-05-24 00:00:00' AND '2005-05-24 23:59:00'
 c).
-SELECT rental_date FROM sakila19_5.rental
-WHERE rental_date >= '2005-06-30';
+SELECT rental_date FROM sakila.rentaL
+WHERE rental_date >= '2005-06-30 23:59:59'
 d).
-SELECT rental_date, staff_id FROM sakila19_5.rental
-WHERE rental_date BETWEEN '2005-06-30' AND '2005-08-31' AND staff_id = 2;
+SELECT rental_date, staff_id FROM sakila.rental
+WHERE (rental_date BETWEEN '2005-06-30 00:00:00' AND '2005-08-31 23:59:59') AND staff_id = 2
 
 2). Napisz kwerendy, które wyświetlą informację z sakila.customer do następujących pytań:
 a). wszystkich aktywnych klientów,
