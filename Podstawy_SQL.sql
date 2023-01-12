@@ -88,11 +88,11 @@ a). wszystkich aktywnych klientów,
 b). wszystkich aktywnych klientów albo tych, którzy zaczynają się od 'ANDRE'
 
 a).
-SELECT * FROM sakila19_5.customer
-WHERE active = '1';
+SELECT * FROM sakila.customer
+WHERE active = 1
 b).
-SELECT first_name, active FROM sakila19_5.customer
-WHERE active = '1' OR first_name LIKE 'ANDRE%';
+SELECT * FROM sakila.customer
+WHERE active = 1 XOR first_name LIKE 'ANDRE%'
 
 3). Napisz kwerendy, które wyświetlą informację z sakila.customer do następujących pytań:
 a). wszystkich nieaktywnych klientów ze store_id= 1
