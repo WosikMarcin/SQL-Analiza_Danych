@@ -1,6 +1,6 @@
 --------------------------------------------------------TABELE---------------------------------------------------------
 1). Utwórz tabele my_first_table a nastepnie:
-a). dodaj kolumny first_col ( typ danych text ) i second_col ( typ danych datetime )
+a). dodaj kolumny first_col ( typ danych znakowy krótki tekst to 65 tys. znaków ) i second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss )
 b). dodaj kolumne email ( typ danych znakowy o dlugosci 50 )
 c). usuń tabele my_first_table
 
