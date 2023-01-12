@@ -29,6 +29,38 @@ ALTER TABLE actor_nick
 ADD phone TINYINT
 c).
 DROP TABLE actor_nick
+
+3). Utwórz tabele tymczasowa tmp_actor_nick a nastepnie:
+a). dodaj kolumny first_col ( typ danych znakowy, bardzo krótki tekst do 255 znaków )
+i second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss  )
+b). dodaj kolumne EmployeeCode ( typ danych znakowy, znaki o określonej długości 3 )
+c). usuń tabele tmp_actor_nick
+
+a).
+CREATE TEMPORARY TABLE tmp_actor_nick (
+    first_col VARCHAR(255),
+    second_col DATETIME
+)
+b).
+ALTER TABLE tmp_actor_nick
+ADD EmployeeCode CHAR(3)
+c).
+DROP TABLE tmp_actor_nick
+
+4). Utwórz tabele tmp_actor_nick a nastepnie:
+a). wypełnij tabele na podstawie zapytania, ktore ma wyswietlic wszystkie dane z sakila.actor gdzie first_name to Nick
+b) dodaj kolumne BirthDate ( typ danych czasowy, rok zapisany jako CCYY lub YY )
+c). usuń tabele actor_nick
+
+a).
+CREATE TEMPORARY TABLE tmp_actor_nick AS
+SELECT * FROM sakila.actor WHERE first_name = 'Nick'
+b).
+ALTER TABLE tmp_actor_nick
+ADD BirthDate year
+c)
+DROP TABLE tmp_actor_nick
+
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
 1).Napisz zapytania, które wyświetlą informacje (sakila.rental) na podstawie poniższych kryteriów:
