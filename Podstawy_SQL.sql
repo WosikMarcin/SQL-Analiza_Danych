@@ -77,7 +77,8 @@ e). dodaj do tabeli dane id = 11, name = Marian, surname = Kowalski, email = mar
 f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma wyswietlic name, surname, email z sakila.customer z limitem zwroconych rekordów 5.
 g). usun wszystkich o imieniu Marian
 h). usun kolumne class_id
-i). usuń tabele students
+i). usun tylko 2 pierwszych studentow bez nadanego id
+j). usuń tabele students
 
 a).
 CREATE TABLE IF NOT EXISTS students (
@@ -106,7 +107,12 @@ WHERE name = 'Marian'
 h). 
 ALTER TABLE students
 DROP class_id
-i). 
+i).
+DELETE FROM students
+WHERE id IS NULL
+ORDER BY name
+LIMIT 2
+j). 
 DROP TABLE students
 
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
