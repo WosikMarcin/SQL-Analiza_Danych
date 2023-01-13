@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS students (
     id TINYINT,
     name VARCHAR(50),
     surname VARCHAR(50),
-    email VARCHAR(50),
+    email VARCHAR(50)
 )
 
 b).
