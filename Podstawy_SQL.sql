@@ -47,7 +47,7 @@ ADD EmployeeCode CHAR(3)
 c).
 DROP TABLE tmp_actor_nick
 
-4). Utwórz tabele tmp_actor_nick a nastepnie:
+4). Utwórz tabele tymczasowa tmp_actor_nick a nastepnie:
 a). wypełnij tabele na podstawie zapytania, ktore ma wyswietlic wszystkie dane z sakila.actor gdzie first_name to Nick
 b) dodaj kolumne BirthDate ( typ danych czasowy, rok zapisany jako CCYY lub YY )
 c). usuń tabele actor_nick
