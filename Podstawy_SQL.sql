@@ -2,7 +2,8 @@
 1). Utwórz tabele my_first_table a nastepnie:
 a). dodaj kolumny first_col ( typ danych znakowy krótki tekst to 65 tys. znaków ) i second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss )
 b). dodaj kolumne email ( typ danych znakowy o dlugosci 50 )
-c). usuń tabele my_first_table
+c). usun kolumne second_col
+d). usuń tabele my_first_table
 
 a).
 CREATE TABLE IF NOT EXISTS my_first_table(
@@ -12,13 +13,17 @@ second_col datetime
 b). 
 ALTER TABLE sakila.my_first_table
 ADD email VARCHAR(50)
+c).
+ALTER TABLE my_first_table
+DROP second_col
 c). 
 DROP TABLE my_first_table
 
 2). Utwórz tabele actor_nick a nastepnie:
 a). wypełnij tabele na podstawie zapytania, ktore ma wyswietlic wszystkie dane z sakila.actor gdzie first_name to Nick 
 b). dodaj kolumne phone ( typ danych numeryczny zakres (-128,127) )
-c). usuń tabele actor_nick
+c). usun kolumne last_update
+d). usuń tabele actor_nick
 
 a).
 CREATE TABLE IF NOT EXISTS actor_nick AS
