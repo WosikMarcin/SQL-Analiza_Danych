@@ -75,11 +75,12 @@ d). dodaj dane do tabeli name = Wojtek, email = wojtek@gmail.com
 e). dodaj do tabeli dane id = 11, name = Marian, surname = Kowalski, email = marian@gmail.com, class_id = 1
                          id = 12, name = Jaroslaw, surname = Nowak, email = jn@gmail.com, class_id = 2
 f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma wyswietlic name, surname, email z sakila.customer z limitem zwroconych rekordów 5.
-g). usun wszystkich o imieniu Marian
-h). usun kolumne class_id
-i). usun tylko 2 pierwszych studentow bez nadanego id
-j). wyszysc cala zawartosc tabeli 3 sposobami
-k). usuń tabele students
+g). zaktualizuje wiersz, w ktorym id = 10 tak aby name bylo Grzesiek
+h). usun wszystkich o imieniu Marian
+i). usun kolumne class_id
+j). usun tylko 2 pierwszych studentow bez nadanego id
+k). wyszysc cala zawartosc tabeli 3 sposobami
+l). usuń tabele students
 
 a).
 CREATE TABLE IF NOT EXISTS students (
@@ -103,17 +104,21 @@ INSERT INTO students ( name, surname, email )
 SELECT first_name, last_name, email FROM sakila.customer
 LIMIT 5
 g).
+UPDATE students
+SET name = 'Grzesiek'
+WHERE id=10;
+h).
 DELETE FROM students
 WHERE name = 'Marian'
-h). 
+i). 
 ALTER TABLE students
 DROP class_id
-i).
+j).
 DELETE FROM students
 WHERE id IS NULL
 ORDER BY name
 LIMIT 2
-j). 
+k). 
 DELETE FROM students
 
 DELETE FROM students
