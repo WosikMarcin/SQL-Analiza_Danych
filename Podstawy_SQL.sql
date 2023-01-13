@@ -78,7 +78,8 @@ f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma w
 g). usun wszystkich o imieniu Marian
 h). usun kolumne class_id
 i). usun tylko 2 pierwszych studentow bez nadanego id
-j). usuń tabele students
+j). wyszysc cala zawartosc tabeli 3 sposobami
+k). usuń tabele students
 
 a).
 CREATE TABLE IF NOT EXISTS students (
@@ -113,6 +114,13 @@ WHERE id IS NULL
 ORDER BY name
 LIMIT 2
 j). 
+DELETE FROM students
+
+DELETE FROM students
+WHERE TRUE
+
+TRUNCATE students
+i).
 DROP TABLE students
 
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
