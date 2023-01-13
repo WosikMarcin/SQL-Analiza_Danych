@@ -33,7 +33,7 @@ DROP TABLE actor_nick
 3). Utwórz tabele tymczasowa tmp_actor_nick a nastepnie:
 a). dodaj kolumny first_col ( typ danych znakowy, bardzo krótki tekst do 255 znaków )
 i second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss  )
-b). dodaj kolumne EmployeeCode ( typ danych znakowy, znaki o określonej długości 3 )
+b). dodaj kolumne EmployeeCode ( typ danych znakowy, znaki o określonej długości 3 ) uzywajac osobnej fukcji
 c). usuń tabele tmp_actor_nick
 
 a).
@@ -49,7 +49,7 @@ DROP TABLE tmp_actor_nick
 
 4). Utwórz tabele tymczasowa tmp_actor_nick a nastepnie:
 a). wypełnij tabele na podstawie zapytania, ktore ma wyswietlic wszystkie dane z sakila.actor gdzie first_name to Nick
-b) dodaj kolumne BirthDate ( typ danych czasowy, rok zapisany jako CCYY lub YY )
+b) dodaj kolumne BirthDate ( typ danych czasowy, rok zapisany jako CCYY lub YY ) uzywajac osobnej fukcji
 c). usuń tabele actor_nick
 
 a).
@@ -60,6 +60,41 @@ ALTER TABLE tmp_actor_nick
 ADD BirthDate year
 c)
 DROP TABLE tmp_actor_nick
+
+5). Utwórz tabele students z:
+a). kolumna id ( typ danych znakowy, bardzo mała całkowita (-128, 127) )
+name, surname, email ( typ danych zankowy, znaki o zmiennej długości (50) )
+b). dodaj kolumne classs_id ( typ danych znakowy, bardzo mała całkowita (-128, 127) ) uzywajac osobnej fukcji
+c). dodaj dane do tabeli id = 10, name = Jacek, surname = Kowalski, email = jacek@gmail.com, class_id = 1
+d). dodaj dane do tabeli name = Wojtek, email = wojtek@gmail.com
+e). dodaj do tabeli dane id = 11, name = Marian, surname = Kowalski, email = marian@gmail.com, class_id = 1
+                         id = 12, name = Jaroslaw, surname = Nowak, email = jn@gmail.com, class_id = 2
+f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma wyswietlic name, surname, email z sakila.customer z limitem zwroconych rekordów 5. 
+g). usuń tabele students
+
+a).
+CREATE TABLE IF NOT EXISTS students (
+    id TINYINT,
+    name VARCHAR(50),
+    surname VARCHAR(50),
+    email VARCHAR(50),
+)
+
+b).
+ALTER TABLE students 
+ADD class_id TINYIN
+c).
+INSERT INTO students VALUES ( 10 , 'Jacek' , 'Kowalski' , 'jacek@gmail.com' , 1 )
+d).
+INSERT INTO students ( name, email ) VALUES ( 'Wojtek' , 'wojtek@gmail.com' )
+e).
+INSERT INTO students VALUES ( 11, 'Marian' , 'Kowalski' , 'marian@gmail.com' , 1 ),
+                            ( 12, 'Jaroslaw' , 'Nowak' , 'jn@gmail.com' , 2 )
+f).                    
+INSERT INTO students ( name, surname, email )
+SELECT first_name, last_name, email FROM sakila.customer
+LIMIT 5
+g) DROP TABLE students
 
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
