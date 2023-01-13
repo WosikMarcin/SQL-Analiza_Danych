@@ -74,8 +74,10 @@ c). dodaj dane do tabeli id = 10, name = Jacek, surname = Kowalski, email = jace
 d). dodaj dane do tabeli name = Wojtek, email = wojtek@gmail.com
 e). dodaj do tabeli dane id = 11, name = Marian, surname = Kowalski, email = marian@gmail.com, class_id = 1
                          id = 12, name = Jaroslaw, surname = Nowak, email = jn@gmail.com, class_id = 2
-f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma wyswietlic name, surname, email z sakila.customer z limitem zwroconych rekordów 5. 
-g). usuń tabele students
+f). dodaj do tabeli dane name, surname, email na podstawie zapytania, ktore ma wyswietlic name, surname, email z sakila.customer z limitem zwroconych rekordów 5.
+g). usun wszystkich o imieniu Marian
+h). usun kolumne class_id
+i). usuń tabele students
 
 a).
 CREATE TABLE IF NOT EXISTS students (
@@ -84,10 +86,9 @@ CREATE TABLE IF NOT EXISTS students (
     surname VARCHAR(50),
     email VARCHAR(50)
 )
-
 b).
 ALTER TABLE students 
-ADD class_id TINYIN
+ADD class_id TINYINT
 c).
 INSERT INTO students VALUES ( 10 , 'Jacek' , 'Kowalski' , 'jacek@gmail.com' , 1 )
 d).
@@ -99,7 +100,14 @@ f).
 INSERT INTO students ( name, surname, email )
 SELECT first_name, last_name, email FROM sakila.customer
 LIMIT 5
-g) DROP TABLE students
+g).
+DELETE FROM students
+WHERE name = 'Marian'
+h). 
+ALTER TABLE students
+DROP class_id
+i). 
+DROP TABLE students
 
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
