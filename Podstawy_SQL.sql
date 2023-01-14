@@ -208,7 +208,7 @@ SELECT rental_date AS date_of_rental FROM sakila19_5.rental;
 c).
 SELECT return_date AS date_of_rental_return FROM sakila19_5.rental;
 
-2).Wyświetl dane z sakila.rental tłumacząc przy tym nazwy kolumn z angielskiego na polski według poniższych wymagań:
+2).Wyświetl dane z sakila.rental ( dwoma sposobami ) tłumacząc przy tym nazwy kolumn z angielskiego na polski według poniższych wymagań :
 
 a).rental_id - id wypożyczenia,
 b).inventory_id - id przedmiotu,
@@ -217,12 +217,16 @@ d).return_date - data zwrotu.
 
 a).
 SELECT rental_id "id wypożyczenia" FROM sakila19_5.rental;
+SELECT rental_id AS "id wypożyczenia" FROM sakila19_5.rental;
 b).
 SELECT inventory_id "id przedmiotu" FROM sakila19_5.rental;
+SELECT inventory_id AS "id przedmiotu" FROM sakila19_5.rental;
 c).
 SELECT rental_date "data wypożyczenia" FROM sakila19_5.rental;
+SELECT rental_date AS "data wypożyczenia" FROM sakila19_5.rental;
 d)
 SELECT return_date "data zwrotu" FROM sakila19_5.rental;
+SELECT return_date AS "data zwrotu" FROM sakila19_5.rental;
 
 3).W tabeli sakila.payment znajdują się informacje o płatnościach dokonywanych przez klientów wypożyczalni DVD.
 Napisz kwerendę, która wyświetli kolumnę payment_date w następujących formatach:
