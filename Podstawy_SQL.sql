@@ -201,7 +201,7 @@ c).zmień kolumnę return_date na date_of_rental_return,
 d).kolumny wypisz w wybranej przez siebie kolejności
 
 a).
-SELECT rental_id,rental_date AS Data_Wynajmu,inventory_id,customer_id,return_date AS Data_Zwrotu,staff_id AS Identyfikator_Personelu,
+SELECT rental_id, rental_date AS Data_Wynajmu, inventory_id, customer_id, return_date AS Data_Zwrotu, staff_id AS Identyfikator_Personelu,
 last_update AS Ostatnia_Aktualizacja FROM sakila19_5.rental;
 b).
 SELECT rental_date AS date_of_rental FROM sakila19_5.rental;
