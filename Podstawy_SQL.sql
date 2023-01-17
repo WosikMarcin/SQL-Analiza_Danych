@@ -272,7 +272,7 @@ SELECT LEAST(price,length,rating) FROM sakila19_5.film_list;
 
 a).zwróci największą wartość z kolumn price, length,
 b).zwróci największą wartość z kolumn price, length, rating.
-Dodatkowo, obok wywołania samego GREATEST, w wyniku wyświetl kolumny składowe,
+Dodatkowo, obok wywołania samej funkcji, w wyniku wyświetl kolumny składowe,
 które przekazujesz do funkcji, tj. np. price.
 
 a).
