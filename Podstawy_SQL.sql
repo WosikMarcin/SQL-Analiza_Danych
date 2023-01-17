@@ -283,17 +283,17 @@ SELECT GREATEST(price,length,rating),price,length,rating FROM sakila19_5.film_li
 -----------------------------------------------UNION--------------------------------------------------------------------
 
 1).Używając tabel:
-a).sakila.customer,
-b).sakila.actor,
-c).sakila.staff
+   sakila.customer,
+   sakila.actor,
+   sakila.staff
 Wyświetl wszystkie imiona osób bez powtórzeń
 
-a).
-SELECT DISTINCT(first_name) FROM sakila19_5.customer;
-b).
-SELECT DISTINCT(first_name) FROM sakila19_5.actor;
-c).
-SELECT DISTINCT(first_name) FROM sakila19_5.staff;
+1).
+SELECT first_name FROM sakila.customer
+UNION ALL
+SELECT first_name FROM sakila.actor
+UNION ALL
+SELECT first_name FROM sakila.staff
 
 2).Korzystając z własności, że UNION zwraca domyślnie zbiór, zmodyfikuj poniższą kwerendę tak,
 aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT):
