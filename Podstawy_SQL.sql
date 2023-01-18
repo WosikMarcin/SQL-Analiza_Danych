@@ -237,22 +237,22 @@ SELECT return_date AS "data zwrotu" FROM sakila19_5.rental;
 3).W tabeli sakila.payment znajdują się informacje o płatnościach dokonywanych przez klientów wypożyczalni DVD.
 Napisz kwerendę, która wyświetli kolumnę payment_date w następujących formatach:
 
-a).'rok(2 cyfry)/miesiąc (numeryczny)/dzień (numeryczny)',
-b).'rok(4 cyfry)-nazwa_miesiąca-dzień_tygodnia',
-c).'rok(4 cyfry)-numer_tygodnia',
-d).'rok(2 cyfry)/miesiąc/dzień (nazwa_dnia_tygodnia)',
-e).'rok(4 cyfry)/miesiąc/dzień (numeryczny)'.
+a).'rok_2 cyfry / miesiąc_numeryczny / dzień_miesiaca_numeryczny',
+b).'rok_4 cyfry - nazwa_miesiąca - dzień_tygodnia_numeryczny',
+c).'rok_4 cyfry - numer_tygodnia_roku',
+d).'rok_2 cyfry / nazwa_miesiąca/dzień_nazwa_dnia_tygodnia',
+e).'rok_4 cyfry / miesiąc_numeryczny / dzień_tygodnia_numeryczny'.
 
 a).
-SELECT DATE_FORMAT(payment_date,'%y/%m/%d'),payment_date FROM sakila19_5.payment;
+SELECT DATE_FORMAT(payment_date,'%y/%m/%d') FROM sakila.payment
 b).
-SELECT DATE_FORMAT(payment_date,'%Y-%M-%w'),payment_date FROM sakila19_5.payment;
+SELECT DATE_FORMAT(payment_date,'%Y-%M-%w') FROM sakila.payment
 c).
-SELECT DATE_FORMAT(payment_date,'%Y/%v'), payment_date FROM sakila19_5.payment;
+SELECT DATE_FORMAT(payment_date,'%Y-%v') FROM sakila.payment
 d).
-SELECT DATE_FORMAT(payment_date, '%y/%m/%W'),payment_date FROM sakila19_5.payment;
+SELECT DATE_FORMAT(payment_date,'%y/%M/%W') FROM sakila.payment
 e).
-SELECT DATE_FORMAT(payment_date, '%Y/%m/%w'), payment_date FROM sakila19_5.payment;
+SELECT DATE_FORMAT(payment_date,'%Y/%m/%w') FROM sakila.payment
 
 4).
 Zapoznaj się z metodą GET_FORMAT(), która posiada predefiniowane formaty wybranych standardów wyświetlania dat
