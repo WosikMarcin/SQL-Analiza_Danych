@@ -193,20 +193,26 @@ WHERE films_amount > 20 AND avg_film_rate > 3.3 OR actor_payload > 2000;
 
 ----------------------------------------FORMATOWANIE DANYCH WYJSCIOWYCH-------------------------------------------------
 
-1).Wyświetl dane z sakila.rental nadając aliasy dla kolumn według poniższych wymagań:
-
-a).kolumny rental_id, inventory_id, customer_id pozostaw bez zmian,
-b).zmień kolumnę rental_date na date_of_rental,
-c).zmień kolumnę return_date na date_of_rental_return,
-d).kolumny wypisz w wybranej przez siebie kolejności
+1).Wyświetl dane z sakila.rental nadając aliasy dla kolumn według poniższych wymagań (użyj jednego zapytania, wyświetl na 4 spsoby) :
 
 a).
-SELECT rental_id, rental_date AS Data_Wynajmu, inventory_id, customer_id, return_date AS Data_Zwrotu, staff_id AS Identyfikator_Personelu,
-last_update AS Ostatnia_Aktualizacja FROM sakila19_5.rental;
-b).
-SELECT rental_date AS date_of_rental FROM sakila19_5.rental;
-c).
-SELECT return_date AS date_of_rental_return FROM sakila19_5.rental;
+- kolumny rental_id, inventory_id, customer_id pozostaw bez zmian,
+- zmień kolumnę rental_date na date_of_rental,
+- zmień kolumnę return_date na date_of_rental_return,
+- kolumny wypisz w wybranej przez siebie kolejności
+
+a).
+SELECT rental_id, inventory_id, customer_id, rental_date AS date_of_rental,
+        return_date AS date_of_rental_return FROM sakila.rental
+
+SELECT rental_id, inventory_id, customer_id, rental_date AS "date_of_rental",
+        return_date AS "date_of_rental_return" FROM sakila.rental                                                                                      
+                                                                                      
+SELECT rental_id, inventory_id, customer_id, rental_date date_of_rental,
+        return_date date_of_rental_return FROM sakila.rental
+
+SELECT rental_id, inventory_id, customer_id, rental_date "date_of_rental",
+        return_date "date_of_rental_return" FROM sakila.rental
 
 2).Wyświetl dane z sakila.rental ( dwoma sposobami ) tłumacząc przy tym nazwy kolumn z angielskiego na polski według poniższych wymagań :
 
