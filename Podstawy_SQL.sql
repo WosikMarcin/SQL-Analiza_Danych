@@ -292,23 +292,43 @@ SELECT GREATEST(price,length,rating),price,length,rating FROM sakila19_5.film_li
    sakila.customer,
    sakila.actor,
    sakila.staff
-Wyświetl wszystkie imiona osób bez powtórzeń
+Wyświetl wszystkie imiona osób bez powtórzeń (uzyj dwoch sposobow)
 
-1).
+a).
 SELECT first_name FROM sakila.customer
-UNION ALL
+UNION 
 SELECT first_name FROM sakila.actor
-UNION ALL
+UNION
+SELECT first_name FROM sakila.staff
+
+b).
+SELECT first_name FROM sakila.customer
+UNION DISTINCT
+SELECT first_name FROM sakila.actor
+UNION DISTINCT
 SELECT first_name FROM sakila.staff
 
 2).Korzystając z własności, że UNION zwraca domyślnie zbiór, zmodyfikuj poniższą kwerendę tak,
-aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT):
+aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT, uzyj dwoch sposobow):
 
+a).
 SELECT category FROM sakila19_5.nicer_but_slower_film_list
 UNION
 SELECT category FROM sakila19_5.nicer_but_slower_film_list;
+b).
+SELECT category FROM sakila19_5.nicer_but_slower_film_list
+UNION DISTINCT
+SELECT category FROM sakila19_5.nicer_but_slower_film_list;
 
-------------------------------------------------POZAPYTANIA-------------------------------------------------------------
+3). Zakładając iż zbiór A to 'Kot', zbiór B to 'Pies', zbiór C to 'Kot' wyswietl sume zbiorow A,B,C zachowujac duplikaty.
+
+SELECT 'Kot'
+UNION ALL
+SELECT 'Pies'
+UNION ALL
+SELECT 'Kot'
+
+------------------------------------------------PODZAPYTANIA-------------------------------------------------------------
 
 1).Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
 których całkowita sprzedaż przekracza połowę sprzedaży całkowitej wypożyczalni.
