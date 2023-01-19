@@ -1,4 +1,4 @@
-------------------------------------------------------FILTROWANIE-------------------------------------------------------
+------------------------------------------------------JOIN-------------------------------------------------------
 1). Napisz złączenie, które połączy tabele rental oraz payment. Wyświetl tylko poniższe kolumny:
 
 payment_id,
@@ -10,7 +10,7 @@ W tym zadaniu użyj INNER JOIN.
 Pamiętaj o użyciu aliasów dla tabel w zapytaniu
 
 a).
-SELECT payment_id,r.rental_id,amount,rental_date,payment_date
+SELECT payment_id, r.rental_id, amount, rental_date, payment_date
 FROM sakila19_5.rental AS r
 INNER JOIN sakila19_5.payment AS p
 ON r.rental_id = p.rental_id;
@@ -28,7 +28,7 @@ film_id.
 Ponownie użyj INNER JOIN w celu połączenia.
 
 a).
-SELECT r.inventory_id,rental_id,film_id
+SELECT r.inventory_id, rental_id, film_id
 FROM sakila19_5.rental AS r
 INNER JOIN sakila19_5.inventory AS i
 ON r.inventory_id = i.inventory_id
@@ -47,7 +47,7 @@ description,
 release_year.
 
 a).
-SELECT inventory_id,f.film_id,title,description
+SELECT inventory_id, f.film_id, title, description, release_year
 FROM sakila19_5.film AS f
 INNER JOIN sakila19_5.inventory AS i
 ON f.film_id = i.film_id;
