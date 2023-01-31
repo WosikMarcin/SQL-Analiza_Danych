@@ -333,8 +333,8 @@ SELECT 'Kot'
 1).Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
 których całkowita sprzedaż przekracza połowę sprzedaży całkowitej wypożyczalni.
 
-SELECT * FROM sakila19_5.sales_by_store
-WHERE total_sales > ( SELECT total_sales/2 FROM sakila19_5.sales_total);
+SELECT * FROM sakila.sales_by_store
+WHERE total_sales > ( SELECT total_sales/2 FROM sakila.sales_total );
 
 2)Zapoznaj się ze strukturą sakila.rating_analytics, która posiada zagregowane informacje dotyczące poszczególnych
 ratingów filmowych oraz dla wszystkich filmów. Następnie wykonaj następujące działania:
@@ -349,27 +349,31 @@ f). Napisz kwerendę, która powie, który rating cieszy się największą popul
 g). Napisz kwerendę, która odpowie, z którego ratingu filmy są średnio najkrótsze.
 
 c).
-SELECT * FROM sakila19_5.rating_analytics
-WHERE avg_rental_duration < (SELECT AVG(avg_rental_duration) FROM sakila19_5.rating_analytics);
+SELECT * FROM sakila.rating_analytics
+WHERE avg_rental_duration < (SELECT AVG(avg_rental_duration) FROM sakila.rating_analytics);
 d).
-SELECT * FROM sakila19_5.rating_analytics
-WHERE rating = (SELECT rating FROM sakila19_5.rating WHERE id_rating = 3)
+SELECT * FROM sakila.rating_analytics
+WHERE rating = (SELECT rating FROM sakila.rating WHERE id_rating = 3)
 e).
-SELECT * FROM sakila19_5.rating_analytics
-WHERE rating IN (SELECT rating FROM sakila19_5.rating WHERE id_rating IN (3,2,5));
+SELECT * FROM sakila.rating_analytics
+WHERE rating IN (SELECT rating FROM sakila.rating WHERE id_rating IN (3,2,5));
 f)
-SELECT rating,rentals FROM sakila19_5.rating_analytics
-WHERE rentals = (SELECT max(rentals) FROM sakila19_5.rating_analytics);
+SELECT rating, rentals FROM sakila.rating_analytics
+WHERE rentals = (SELECT max(rentals) FROM sakila.rating_analytics);
 g).
-SELECT rating, avg_film_length FROM sakila19_5.rating_analytics
-WHERE avg_film_length = (SELECT min(avg_film_length) FROM sakila19_5.rating_analytics);
+SELECT rating, avg_film_length FROM sakila.rating_analytics
+WHERE avg_film_length = (SELECT min(avg_film_length) FROM sakila.rating_analytics);
 
 4).Znajdź te wypożyczenia, dla których występują wpłaty czyli jest określone rental_id w sakila.payment.
 
 SELECT * FROM sakila.rental
 WHERE rental_id IN (SELECT rental_id FROM sakila.payment);
 
-5).Znajdź wypożyczenia z sakila.rental przypisane do pracownika o imieniu Jon:
+5).Znajdź wypożyczenia z sakila.rental przypisane do pracownika o imieniu Jon. ( wykonaj na 2 sposoby - drugi za pomoca WITH )
 
 SELECT * FROM sakila.rental
 WHERE staff_id = ( SELECT staff_id FROM sakila.staff WHERE first_nam e= 'Jon' )
+
+WITH renter as ( SELECT staff_id FROM sakila.staff WHERE first_name = 'Jon' )
+SELECT * FROM sakila.rental
+WHERE staff_id = (SELECT * FROM renter)
