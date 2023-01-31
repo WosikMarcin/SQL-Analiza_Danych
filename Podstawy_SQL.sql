@@ -364,4 +364,12 @@ g).
 SELECT rating, avg_film_length FROM sakila19_5.rating_analytics
 WHERE avg_film_length = (SELECT min(avg_film_length) FROM sakila19_5.rating_analytics);
 
+4).Znajdź te wypożyczenia, dla których występują wpłaty czyli jest określone rental_id w sakila.payment.
 
+SELECT * FROM sakila.rental
+WHERE rental_id IN (SELECT rental_id FROM sakila.payment);
+
+5).Znajdź wypożyczenia z sakila.rental przypisane do pracownika o imieniu Jon:
+
+SELECT * FROM sakila.rental
+WHERE staff_id = ( SELECT staff_id FROM sakila.staff WHERE first_nam e= 'Jon' )
