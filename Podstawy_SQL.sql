@@ -182,14 +182,14 @@ c). wyświetlą aktorów, którzy grali w ponad 20 filmach i ich średni rating 
 lub wpływy z wypożyczeń (actor_payload) przekroczyły 2000.
 
 a).
-SELECT first_name,last_name,films_amount FROM sakila19_5.actor_analytics
+SELECT first_name, last_name, films_amount FROM sakila.actor_analytics
 WHERE films_amount > 25;
 b).
-SELECT first_name,last_name,films_amount,avg_film_rate FROM sakila19_5.actor_analytics
+SELECT first_name, last_name, films_amount, avg_film_rate FROM sakila.actor_analytics
 WHERE films_amount > 20 AND avg_film_rate > 3.3;
 c).
-SELECT first_name,last_name,films_amount,avg_film_rate,actor_payload FROM sakila19_5.actor_analytics
-WHERE films_amount > 20 AND avg_film_rate > 3.3 OR actor_payload > 2000;
+SELECT first_name, last_name, films_amount, avg_film_rate, actor_payload FROM sakila.actor_analytics
+WHERE films_amount > 20 AND ( avg_film_rate > 3.3 OR actor_payload > 2000 );
 
 ----------------------------------------FORMATOWANIE DANYCH WYJSCIOWYCH-------------------------------------------------
 
