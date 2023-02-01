@@ -330,16 +330,16 @@ SELECT 'Kot'
 
 ------------------------------------------------PODZAPYTANIA-------------------------------------------------------------
 
-1).Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
+1). Używając danych zawartych w sakila.sales_by_store oraz sakila.sales_total znajdź te sklepy,
 których całkowita sprzedaż przekracza połowę sprzedaży całkowitej wypożyczalni.
 
 SELECT * FROM sakila.sales_by_store
 WHERE total_sales > ( SELECT total_sales/2 FROM sakila.sales_total );
 
-2)Zapoznaj się ze strukturą sakila.rating_analytics, która posiada zagregowane informacje dotyczące poszczególnych
+2). Zapoznaj się ze strukturą sakila.rating_analytics, która posiada zagregowane informacje dotyczące poszczególnych
 ratingów filmowych oraz dla wszystkich filmów. Następnie wykonaj następujące działania:
 
-a).Analizując tylko strukturę danych, zastanów się, który wiersz może wyznaczać statystyki dla wszystkich ratingów
+a). Analizując tylko strukturę danych, zastanów się, który wiersz może wyznaczać statystyki dla wszystkich ratingów
 (bez podziału na rating),
 b).Znajdź te ratingi, które są wyższe od średniej wyznaczonej dla wszystkich filmów, bez podziału na rating,
 c).Znajdź te ratingi, których średni czas wypożyczenia jest krótszy od średniej globalnej,
@@ -364,12 +364,71 @@ g).
 SELECT rating, avg_film_length FROM sakila.rating_analytics
 WHERE avg_film_length = (SELECT min(avg_film_length) FROM sakila.rating_analytics);
 
-4).Znajdź te wypożyczenia, dla których występują wpłaty czyli jest określone rental_id w sakila.payment.
+3) Wykonaj następujące zadania:
+
+a). Znajdź aktora / aktorkę o imieniu ZERO i nazwisku CAGE, dla jego id wyświetl wszystkie statystyki.
+
+SELECT * FROM sakila.actor_analytics
+WHERE first_name = 'ZERO' AND last_name = 'CAGE';
+
+b). Wyświetl aktorów, którzy grali w co najmniej 30 filmach.
+
+SELECT actor_id, COUNT(actor_id) FROM sakila.film_actor
+GROUP BY actor_id
+HAVING COUNT(actor_id) > 30;
+
+c). Używając wyników poprzedniego punktu, wyświetl wszystkie informacje o nich z sakila.actor.
+
+SELECT * FROM sakila.actor
+WHERE actor_id IN ( SELECT actor_id FROM sakila.film_actor GROUP BY actor_id HAVING COUNT(actor_id) > 30 );
+
+d). Znajdź aktorów, którzy zagrali w filmach o długości (kolumna longest_movie_duration) 184, 174, 176, 164.
+
+SELECT * FROM sakila.actor_analytics
+WHERE longest_movie_duration IN (184, 174, 176, 164);
+
+e). Używając poprzedniego podpunktu, z sakila.film znajdź te filmy (tutaj musisz wykonać więcej niż jedno podzapytanie).
+
+SELECT * FROM sakila.film
+WHERE film_id IN ( SELECT film_id FROM sakila.film_actor
+WHERE actor_id IN (SELECT actor_id FROM sakila.actor_analytics
+WHERE longest_movie_duration IN (184, 174, 176, 164 )))
+
+4). Używając sakila.film_list:
+
+a). Napisz kwerendę, która wyświetli filmy z kategorii Horror, Documentary, Family o ratingu P lub NC-17.
+
+SELECT title, category, rating FROM sakila.film_list
+WHERE category IN ( 'Horror' , 'Documentary' , 'Family' ) AND rating = 'P' OR rating = 'NC-17';
+
+b). Używając wyników poprzedniego zadania oraz sakila.film_text, wyświetl opisy tych filmów.
+
+SELECT * FROM sakila.film_text
+WHERE title IN ( SELECT title FROM sakila.film_list
+WHERE category IN ( 'Horror' , 'Documentary' , 'Family' ) AND rating = 'P' OR rating = 'NC-17');
+
+c). Posortuj sakila.film_list według klucza Category - rosnąco, Price - malejąco.
+
+SELECT * FROM sakila.film_list
+ORDER BY category ASC, price DESC;
+
+SELECT * FROM sakila.film_list
+ORDER BY category, price DESC;
+
+d). Posortuj sakila.film_list według klucza Rating - rosnąco, Length - malejąco.
+
+SELECT * FROM sakila.film_list
+ORDER BY rating ASC, length DESC;
+
+SELECT * FROM sakila.film_list
+ORDER BY rating, length DESC;
+
+5). Znajdź te wypożyczenia, dla których występują wpłaty czyli jest określone rental_id w sakila.payment.
 
 SELECT * FROM sakila.rental
 WHERE rental_id IN (SELECT rental_id FROM sakila.payment);
 
-5).Znajdź wypożyczenia z sakila.rental przypisane do pracownika o imieniu Jon. ( wykonaj na 2 sposoby - drugi za pomoca WITH )
+6). Znajdź wypożyczenia z sakila.rental przypisane do pracownika o imieniu Jon. ( wykonaj na 2 sposoby - drugi za pomoca WITH )
 
 SELECT * FROM sakila.rental
 WHERE staff_id = ( SELECT staff_id FROM sakila.staff WHERE first_nam e= 'Jon' )
