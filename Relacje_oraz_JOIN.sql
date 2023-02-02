@@ -119,8 +119,8 @@ WHERE country = ''
 SELECT * FROM tasks.city_country
 
 2).
-Tabela tasks.films_to_be_cleaned jest kopią tabeli .
-Chcemy z niej usunąć filmy, które spełniają następujące warunki:
+Tabela tasks.films_to_be_cleaned jest kopią tabeli film.
+Chcemy z tasks.films_to_be_cleaned usunąć filmy, które spełniają następujące warunki:
 
 film_category w (1, 5, 7, 9),
 length jest krótszy niż 1 godzina,
