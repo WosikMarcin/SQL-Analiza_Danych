@@ -282,9 +282,9 @@ Dodatkowo, obok wywołania samej funkcji, w wyniku wyświetl kolumny składowe,
 które przekazujesz do funkcji, tj. np. price.
 
 a).
-SELECT GREATEST(price,length),price,length FROM sakila19_5.film_list;
+SELECT GREATEST(price,length),price,length FROM sakila.film_list;
 b).
-SELECT GREATEST(price,length,rating),price,length,rating FROM sakila19_5.film_list;
+SELECT GREATEST(price,length,rating),price,length,rating FROM sakila.film_list;
 
 -----------------------------------------------UNION--------------------------------------------------------------------
 
@@ -312,13 +312,13 @@ SELECT first_name FROM sakila.staff
 aby zwracała kategorię filmów (category) bez powtórzeń (nie używaj tutaj klauzuli DISTINCT, uzyj dwoch sposobow):
 
 a).
-SELECT category FROM sakila19_5.nicer_but_slower_film_list
+SELECT category FROM sakila.nicer_but_slower_film_list
 UNION
-SELECT category FROM sakila19_5.nicer_but_slower_film_list;
+SELECT category FROM sakila.nicer_but_slower_film_list;
 b).
-SELECT category FROM sakila19_5.nicer_but_slower_film_list
+SELECT category FROM sakila.nicer_but_slower_film_list
 UNION DISTINCT
-SELECT category FROM sakila19_5.nicer_but_slower_film_list;
+SELECT category FROM sakila.nicer_but_slower_film_list;
 
 3). Zakładając iż zbiór A to 'Kot', zbiór B to 'Pies', zbiór C to 'Kot' wyswietl sume zbiorow A,B,C zachowujac duplikaty.
 
