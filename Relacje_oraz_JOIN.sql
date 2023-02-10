@@ -120,24 +120,28 @@ SELECT * FROM tasks.city_country
 
 2).
 Tabela tasks.films_to_be_cleaned jest kopią tabeli film.
+a).
 Chcemy z tasks.films_to_be_cleaned usunąć filmy, które spełniają następujące warunki:
 
-film_category w (1, 5, 7, 9),
-length jest krótszy niż 1 godzina,
-rating nie jest NC-17 lub PG.
-Zadanie wykonaj używając JOIN. Po wykonaniu swojego zapytania napisz kolejne, które sprawdzi jego poprawność.
+category_id w (1, 5, 7, 9) - tabela sakila.film_category,
+length jest krótszy niż 1 godzina - tabela tasks.films_to_be_cleaned,
+rating nie jest NC-17 lub PG - tabela tasks.films_to_be_cleaned.
+Zadanie wykonaj używając JOIN. 
 
-DELETE c
-FROM
-          tasks.films_to_be_cleaned AS f
-  INNER JOIN
-          sakila.film_category AS c USING (film_id)
-WHERE f.length < 1
-AND rating NOT IN (NC-17,PG)
-AND category_id IN (1,5,7,9)
+b).
+Po wykonaniu swojego zapytania napisz kolejne, które sprawdzi jego poprawność.
 
-SELECT * FROM tasks.films_to_be_cleaned
-SELECT * FROM sakila.film_category
+a).
+DELETE ftbc
+FROM tasks.films_to_be_cleaned AS ftbc
+JOIN sakila.film_category AS fc ON ftbc.film_id = fc.film_id
+WHERE category_id IN (1, 5, 7, 9) AND rating NOT IN ('NC-17','PG') AND length < 360
+
+b).
+SELECT category_id, rating, length
+FROM tasks.films_to_be_cleaned AS ftbc
+JOIN sakila.film_category AS fc ON ftbc.film_id = fc.film_id
+WHERE category_id IN (1, 5, 7, 9) AND rating NOT IN ('NC-17','PG') AND length < 360
 
 3).
 Tabela jest pustą kopią tabeli . Napisz kwerendę, która uzupełni ją tylko o te płatności,
