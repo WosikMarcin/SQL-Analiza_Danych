@@ -125,8 +125,25 @@ DELETE FROM students
 WHERE TRUE
 
 TRUNCATE students
-i).
+l).
 DROP TABLE students
+
+6). Utwórz widok actor_film dla schematu examples, który wyświetli first_name (nadaj alias actor_name) 
+    i last_name (nadaj alias actor_last_name) z tabeli actor schemat sakila, 
+    title (nadaj alias film_title) i description (nadaj alias film_description) z tabeli film schemat sakila.
+    
+CREATE VIEW examples.actor_film AS
+SELECT 
+    a.first_name AS actor_name,
+    a.last_name AS actor_last_name,
+    f.title AS film_title,
+    f.description AS film_description
+FROM
+    actor AS a
+INNER JOIN
+    film_actor fa ON a.actor_id = fa.actor_id
+INNER JOIN
+    film f ON fa.film_id = f.film_id
 
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
