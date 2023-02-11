@@ -144,9 +144,39 @@ JOIN sakila.film_category AS fc ON ftbc.film_id = fc.film_id
 WHERE category_id IN (1, 5, 7, 9) AND rating NOT IN ('NC-17','PG') AND length < 360
 
 3).
-Tabela jest pustą kopią tabeli . Napisz kwerendę, która uzupełni ją tylko o te płatności,
-które pochodzą od klientów posiadających adres z .tasks.california_paymentssakila.paymentsCalifornia
+Tabela tasks.california_payments jest pustą kopią tabeli sakila.payments. 
+a).Napisz kwerendę, która uzupełni ją tylko o te płatności, które pochodzą od klientów posiadających adres z California.
+b).Dodatkowo napisz zapytanie, które sprawdzi, że klienci, którzy są dostępni w tabeli tasks.california_payments, pochodzą tylko z tego obrębu.
 
-Dodatkowo napisz zapytanie, które sprawdzi, że klienci, którzy są dostępni w tabeli ,
-pochodzą tylko z tego obrębu.tasks.california_payments
+a).
+INSERT INTO tasks.california_payments(
+    payment_id,
+    customer_id,
+    staff_id,
+    rental_id,
+    amount,
+    payment_date,
+    last_update
+    )
+SELECT
+       p.payment_id,
+       p.customer_id,
+       p.staff_id,
+       p.rental_id,
+       p.amount,
+       p.payment_date,
+       p.last_update
+FROM
+    sakila.payment AS p
+JOIN
+    sakila.customer AS c USING (customer_id)
+JOIN
+    sakila.address AS a USING (address_id)
+WHERE a.district = 'California';
 
+b).
+SELECT payment_id, p.customer_id, staff_id, rental_id, amount, payment_date, p.last_update, district
+FROM tasks.california_payments p
+JOIN sakila.customer c ON p.customer_id = c.customer_id
+JOIN sakila.address a ON c.address_id = a.address_id
+WHERE district = 'California';
