@@ -180,3 +180,30 @@ FROM tasks.california_payments p
 JOIN sakila.customer c ON p.customer_id = c.customer_id
 JOIN sakila.address a ON c.address_id = a.address_id
 WHERE district = 'California';
+
+4).
+a). stwórz tabele examples.buildings a także
+    dodaj kolumny: building_no ( typ danych numeryczny - całkowity (-2 10^9, 2 10^9), jest to klucz główny), building_name ( typ danych znakowy o zmiennej długości (255) ), 
+    address ( typ danych znakowy o zmiennej długości (255) )
+b). stwórz tabele examples.rooms a także
+    dodaj kolumny: room_no ( typ danych numeryczny - całkowity (-2 10^9, 2 10^9)), room_name ( typ danych znakowy o zmiennej długości (255), ograniczenie NOT NULL), 
+    building_no ( typ danych numeryczny - całkowity (-2 10^9, 2 10^9), ograniczenie NOT NULL, jest to klucz obcy )
+    
+
+
+a).
+CREATE TABLE examples.buildings (
+  building_no INT PRIMARY KEY,
+  building_name VARCHAR(255),
+  address VARCHAR(255)
+);
+
+b).
+CREATE TABLE examples.rooms (
+  room_no INT,
+  room_name VARCHAR(255) NOT NULL,
+  building_no INT NOT NULL,
+  FOREIGN KEY (building_no)
+  REFERENCES examples.buildings (building_no)   
+  ON DELETE CASCADE 
+);
