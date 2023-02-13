@@ -144,7 +144,47 @@ INNER JOIN
     film_actor fa ON a.actor_id = fa.actor_id
 INNER JOIN
     film f ON fa.film_id = f.film_id
+    
+7). Dla schematu exmaples:
 
+a). utwórz widok daysofweek, który wyświetli w kolumnie day nazwy dni tygodnia ( 3 pierwsze litery ).
+b). zmodyfikuj widok daysofweek i zmień nazwy dni tygodnia ( 3 pierwsze litery ) na pełne nazwy dni tygodnia.     
+c). usuń widok daysofweek  
+
+a).
+CREATE VIEW daysofweek (day) AS
+    SELECT 'Mon'
+    UNION
+    SELECT 'Tue'
+    UNION
+    SELECT 'Web'
+    UNION
+    SELECT 'Thu'
+    UNION
+    SELECT 'Fri'
+    UNION
+    SELECT 'Sat'
+    UNION
+    SELECT 'Sun';
+    
+b).
+CREATE OR REPLACE VIEW examples.daysofweek (day) AS
+    SELECT 'Monday'
+    UNION
+    SELECT 'Tuesday'
+    UNION
+    SELECT 'Wednesday'
+    UNION
+    SELECT 'Thursday'
+    UNION
+    SELECT 'Friday'
+    UNION
+    SELECT 'Saturday'
+    UNION
+    SELECT 'Sunday';
+ 
+c). DROP VIEW examples.daysofweek
+  
 ------------------------------------------------FILTROWANIE------------------------------------------------------------
 
 1).Napisz zapytania, które wyświetlą informacje (sakila.rental) na podstawie poniższych kryteriów:
