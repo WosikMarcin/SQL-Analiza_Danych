@@ -54,9 +54,19 @@ SELECT * FROM tmp_film_actors
 4).
 
 a). Napisz zapytanie, które zwróci:
-id filmu,
-tytuł filmu,
-liczbę wypożyczeń filmu.
+film_id - alias id filmu, tabela sakila.film_analytics
+title - alias tytuł filmu, tabela sakila.film_analytics
+rentals - alias liczbę wypożyczeń filmu, tabela sakila.film_analytics
+
 Wyniki zapisz do tabeli tymczasowej, np. tmp_film_rentals.
 
 b). dodatkowo napisz kwerendę, którą zweryfikujesz swoje rozwiązanie.
+
+a).
+
+CREATE TEMPORARY TABLE tmp_film_rentals AS
+SELECT film_id AS id_filmu, title AS tytuł_filmu, rentals AS liczbe_wypozyczen_filmu FROM sakila.film_analytics
+
+b).
+
+SELECT * FROM tmp_film_rentals
