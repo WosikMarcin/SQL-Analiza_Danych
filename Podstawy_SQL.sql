@@ -1,22 +1,27 @@
 --------------------------------------------------------TABELE---------------------------------------------------------
-1). Utwórz tabele my_first_table a nastepnie:
-a). dodaj kolumny first_col ( typ danych znakowy krótki tekst to 65 tys. znaków ) i second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss )
-b). dodaj kolumne email ( typ danych znakowy o dlugosci 50 )
-c). usun kolumne second_col
-d). usuń tabele my_first_table
+1). 
+a). utwórz tabele my_first_table z kolumną first_table_id ( typ danych numeryczny - mała całkowita (-32768, 32767), ustaw jako klucz główny, 
+    ustaw brak możliwości wstawiania liczb ujemnych, ustaw automatyczne zwiększanie wartości - domyślna początkowa wartość jako 1 ), 
+    kolumną first_col ( typ danych znakowy krótki tekst to 65 tys. znaków ) 
+    i kolumną second_col ( typ danych czasowy, data i czas w formacie CCYY-MM-DD hh:mm:ss ), ustaw first_col jako index
+c). dodaj kolumne email ( typ danych znakowy o dlugosci 50 )
+d). usun kolumne second_col
+e). usuń tabele my_first_table
 
 a).
 CREATE TABLE IF NOT EXISTS my_first_table(
+first_table_id SMALLINT UNSIGNED AUTO_INCREMENT, 
 first_col text,
 second_col datetime
+INDEX(first_col)
 )
-b). 
+c). 
 ALTER TABLE sakila.my_first_table
 ADD email VARCHAR(50)
-c).
+d).
 ALTER TABLE my_first_table
 DROP second_col
-c). 
+e). 
 DROP TABLE my_first_table
 
 2). Utwórz tabele actor_nick a nastepnie:
