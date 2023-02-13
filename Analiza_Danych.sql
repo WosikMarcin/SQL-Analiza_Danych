@@ -38,7 +38,6 @@ Sprawdz, czy Twoje zapytanie jest poprawne i napisz odpowiedną kwerendę (odpow
 a). napisz kwerendę, która zwróci następujące informacje:
     nazwę filmu,
     liczbę aktorów występujących w filmie.
-    Wyniki zapisz do tabeli tymczasowej, np. tmp_film_actors.
 b). dodatkowo napisz zapytanie, którym zweryfikujesz swoją kwerendę
 
 a).
@@ -51,3 +50,13 @@ GROUP BY film_id
 b).
 
 SELECT * FROM tmp_film_actors
+
+4).
+
+a). Napisz zapytanie, które zwróci:
+id filmu,
+tytuł filmu,
+liczbę wypożyczeń filmu.
+Wyniki zapisz do tabeli tymczasowej, np. tmp_film_rentals.
+
+b). dodatkowo napisz kwerendę, którą zweryfikujesz swoje rozwiązanie.
