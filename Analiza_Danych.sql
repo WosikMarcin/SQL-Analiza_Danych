@@ -3,7 +3,8 @@
 
 SELECT COUNT(*) AS rows_amount FROM sakila.payment;
 
-2).
+2). Znajdź aktoraów, którzy są rozchwytywani tzn. określ w ilu filmach zagrali poszczególni aktorzy. Posortuj od największej liczby.
+
 
 3). Zagreguj tabelę payment według następujących reguł:
 
