@@ -105,7 +105,35 @@ d).
 SELECT ADDDATE('2021-06-01', INTERVAL -15 DAY);
 
 3). Dla daty i czasu 2021-07-10 23:59:59 wykonaj następujące polecenia:
+
 a). dodaj jedną sekunde
 b). dodaj jedną godzinę, minutę, sekundę
 
+a). SELECT ADDTIME('2021-07-10 23:59:59', '00:00:01')
+b). SELECT ADDTIME('2021-07-10 23:59:59', '01:01:01')
 
+4). Określa różnicę pomiędzy dwoma datami wyrażoną w dniach.
+
+a). 2021-06-10 23:00:00 - 2021-06-01 23:00:00
+b). 2021-06-10 23:00:00 - 2020-06-01
+c). 2021-06-10 23:00:00 - 2021-06-01 22:00:00
+
+a). SELECT DATEDIFF('2021-06-10 23:00:00', '2021-06-01 23:00:00');
+b). SELECT DATEDIFF('2021-06-10 23:00:00', '2020-06-01');
+c). SELECT DATEDIFF('2021-06-10 23:00:00', '2021-06-01 22:00:00');
+
+5). Wyodrębnij z daty:
+
+a). 2021-06-10 23:00:00, rok
+b). 2021-06-10 23:00:00, dzień
+c). 2021-06-10 23:00:00, który to tydzień
+d). 2021-06-10 23:00:00, sekunde
+
+a).
+SELECT EXTRACT(YEAR FROM '2021-06-10 23:00:00');
+b).
+SELECT EXTRACT(DAY FROM '2021-06-10 23:00:00');
+c)
+SELECT EXTRACT(WEEK FROM '2021-06-10 23:00:00');
+d).
+SELECT EXTRACT(SECOND FROM '2021-06-10 23:00:00');
