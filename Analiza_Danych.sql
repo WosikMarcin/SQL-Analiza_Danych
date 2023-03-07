@@ -26,13 +26,15 @@ GROUP BY customer_id
 HAVING SUM(amount) > 50
 ORDER BY SUM(amount) ASC;
 
-4). Zagreguj tabelę payment według następujących reguł:
+5). Zagreguj tabelę payment według następujących reguł:
 
 a).wyznacz całkowitą kwotę wpływów wypożyczalni (wpływy - amount),
 b).wyznacz całkowitą kwotę wpływów wypożyczalni (wpływy - amount) w podziale na klientów (staff_id) (na razie nie pisz JOIN, użyj tylko customer_id),
 c).wyznacz całkowitą kwotę wypożyczonych filmów (rental_id) w zależności od pracownika (staff_id),
-d).używając funkcji date_format wykonaj podpunkty 2. i 3. dodatkowo w rozbiciu na miesiące kalendarzowe
-a wyniki posortuj malejąco według klucza: staff_id rosnąco, amount - malejąco.
+d).używając funkcji date_format wykonaj podpunkty 2. dodatkowo w rozbiciu na miesiące kalendarzowe
+a wyniki posortuj malejąco według klucza: customer_id rosnąco, SUM(amount) - malejąco.
+e).używając funkcji date_format wykonaj podpunkty 3. dodatkowo w rozbiciu na miesiące kalendarzowe
+a wyniki posortuj malejąco według klucza: staff_id rosnąco, SUM(amount) - malejąco.
 
 a).
 
@@ -45,10 +47,24 @@ GROUP BY customer_id
 
 c).
 
-SELECT staff_id, COUNT(rental_id) FROM sakila.payment
+SELECT staff_id, SUM(rental_id) FROM sakila.payment
 GROUP BY staff_id
 
-5). Przygotuj raport wpłatowy na podstawie odpowiednich tabel z bazy sakila, który wyświetli następujące informacje:
+d).
+
+SELECT customer_id, SUM(amount), date_format(payment_date,'%Y-%m-01') FROM sakila.payment
+GROUP BY customer_id, payment_date
+ORDER BY customer_id ASC, SUM(amount) DESC;
+
+e).
+
+SELECT staff_id, SUM(rental_id), date_format(payment_date,'%Y-%m-01') FROM sakila.payment
+GROUP BY staff_id, payment_date
+ORDER BY staff_id ASC, amount DESC;
+    
+6). 
+
+a). Przygotuj raport wpłatowy na podstawie odpowiednich tabel z bazy sakila, który wyświetli następujące informacje:
 
 imię klienta,
 nazwisko klienta,
@@ -59,9 +75,9 @@ liczbę wpłat,
 datę ostatniej wpłaty.
 Wynik zapytania zapisz w bazie używając widoku.
 
-Sprawdz, czy Twoje zapytanie jest poprawne i napisz odpowiedną kwerendę (odpowiednie kwerendy).
+b). Sprawdz, czy Twoje zapytanie jest poprawne i napisz odpowiedną kwerendę (odpowiednie kwerendy).
 
-6). Utwórz tabele tymczasową tmp_film_actors a także:
+7). Utwórz tabele tymczasową tmp_film_actors a także:
 a). napisz kwerendę, która zwróci następujące informacje:
     nazwę filmu,
     liczbę aktorów występujących w filmie.
@@ -78,7 +94,7 @@ b).
 
 SELECT * FROM tmp_film_actors
 
-7).
+8).
 
 a). Napisz zapytanie, które zwróci:
 film_id - alias id filmu, tabela sakila.film_analytics
