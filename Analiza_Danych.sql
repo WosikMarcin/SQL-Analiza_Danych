@@ -62,9 +62,7 @@ SELECT staff_id, SUM(rental_id), date_format(payment_date,'%Y-%m-01') FROM sakil
 GROUP BY staff_id, payment_date
 ORDER BY staff_id ASC, amount DESC;
     
-6). 
-
-a). Przygotuj raport wpłatowy na podstawie odpowiednich tabel z bazy sakila, który wyświetli następujące informacje:
+6). Przygotuj raport wpłatowy na podstawie odpowiednich tabel z bazy sakila, który wyświetli następujące informacje:
 
 imię klienta,
 nazwisko klienta,
@@ -73,9 +71,18 @@ kwotę wpłat,
 liczbę wpłat,
 średnią kwotę wpłat,
 datę ostatniej wpłaty.
-Wynik zapytania zapisz w bazie używając widoku.
+Wynik zapytania zapisz w bazie używając widoku. Nazwij go payment_report. 
 
-b). Sprawdz, czy Twoje zapytanie jest poprawne i napisz odpowiedną kwerendę (odpowiednie kwerendy).
+CREATE OR REPLACE VIEW payment_report AS SELECT
+first_name AS imie_klienta,
+last_name AS nazwisko_klienta,
+email AS email_klienta,
+SUM(amount) AS kwota_wplat,
+COUNT(amount) AS liczba_wplat,
+AVG(amount) AS srednia_kwota_wplat,
+MAX(payment_date) AS data_ostatniej_wplaty
+FROM sakila.payment AS p INNER JOIN sakila.customer AS c USING(customer_id)
+GROUP BY customer_id
 
 7). Utwórz tabele tymczasową tmp_film_actors a także:
 a). napisz kwerendę, która zwróci następujące informacje:
@@ -84,10 +91,11 @@ a). napisz kwerendę, która zwróci następujące informacje:
 b). dodatkowo napisz zapytanie, którym zweryfikujesz swoją kwerendę
 
 a).
+DROP TABLE IF EXISTS tmp_film_actors;
 
 CREATE TEMPORARY TABLE tmp_film_actors AS
-SELECT title, COUNT(actor_id) FROM sakila.film
-JOIN film_actor AS fa USING(film_id)
+SELECT title, COUNT(actor_id) FROM sakila.film AS f
+INNER JOIN film_actor AS fa USING(film_id)
 GROUP BY film_id
 
 b).
