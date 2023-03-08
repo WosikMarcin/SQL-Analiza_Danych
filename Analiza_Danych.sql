@@ -97,18 +97,27 @@ SELECT title, COUNT(actor_id) FROM sakila.film AS f
 INNER JOIN film_actor AS fa USING(film_id)
 GROUP BY film_id
 
-8). Napisz zapytanie, które zwróci:
+8). 
+a). Napisz zapytanie, które zwróci:
 film_id - nadaj alias - id_filmu, tabela sakila.film_analytics
 title - nadaj alias - tytul_filmu, tabela sakila.film_analytics
 rental_id - nadaj alias - liczba_wypozyczen_filmu, tabela sakila.rental
 
-Wyniki zapisz do tabeli tymczasowej, np. tmp_film_rentals.
+Wyniki zapisz do tabeli tymczasowej, np. tmp_film_rentals. 
+
+b). Wyświetl wyniki
 
 a).
 DROP TABLE IF EXISTS tmp_film_rentals;
 
-CREATE TEMPORARY TABLE tmp_film_rentals AS
-SELECT film_id AS id_filmu, title AS tytul_filmu, COUNT(rental_id) AS liczba_wypozyczen_filmu FROM sakila.film_analytics
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_film_rentals AS
+SELECT film_id AS id_filmu, title AS tytul_filmu, COUNT(rental_id) AS liczba_wypozyczen_filmu FROM film AS f
+INNER JOIN sakila.inventory AS i USING(film_id) INNER JOIN sakila.rental AS r USING(inventory_id)
+GROUP BY film_id;
+
+b)
+
+SELECT * FROM tmp_film_rentals
 
 ------------------------------------------------------DATETIME--------------------------------------------------------
 1). Zwróć aktualny czas serwera.
