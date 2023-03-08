@@ -85,10 +85,9 @@ FROM sakila.payment AS p INNER JOIN sakila.customer AS c USING(customer_id)
 GROUP BY customer_id
 
 7). Utwórz tabele tymczasową tmp_film_actors a także:
-a). napisz kwerendę, która zwróci następujące informacje:
+    napisz kwerendę, która zwróci następujące informacje:
     nazwę filmu,
     liczbę aktorów występujących w filmie.
-b). dodatkowo napisz zapytanie, którym zweryfikujesz swoją kwerendę
 
 a).
 DROP TABLE IF EXISTS tmp_film_actors;
@@ -98,29 +97,18 @@ SELECT title, COUNT(actor_id) FROM sakila.film AS f
 INNER JOIN film_actor AS fa USING(film_id)
 GROUP BY film_id
 
-b).
-
-SELECT * FROM tmp_film_actors
-
-8).
-
-a). Napisz zapytanie, które zwróci:
-film_id - alias id filmu, tabela sakila.film_analytics
-title - alias tytuł filmu, tabela sakila.film_analytics
-rentals - alias liczbę wypożyczeń filmu, tabela sakila.film_analytics
+8). Napisz zapytanie, które zwróci:
+film_id - nadaj alias - id_filmu, tabela sakila.film_analytics
+title - nadaj alias - tytul_filmu, tabela sakila.film_analytics
+rental_id - nadaj alias - liczba_wypozyczen_filmu, tabela sakila.rental
 
 Wyniki zapisz do tabeli tymczasowej, np. tmp_film_rentals.
 
-b). dodatkowo napisz kwerendę, którą zweryfikujesz swoje rozwiązanie.
-
 a).
+DROP TABLE IF EXISTS tmp_film_rentals;
 
 CREATE TEMPORARY TABLE tmp_film_rentals AS
-SELECT film_id AS id_filmu, title AS tytuł_filmu, rentals AS liczbe_wypozyczen_filmu FROM sakila.film_analytics
-
-b).
-
-SELECT * FROM tmp_film_rentals
+SELECT film_id AS id_filmu, title AS tytul_filmu, COUNT(rental_id) AS liczba_wypozyczen_filmu FROM sakila.film_analytics
 
 ------------------------------------------------------DATETIME--------------------------------------------------------
 1). Zwróć aktualny czas serwera.
