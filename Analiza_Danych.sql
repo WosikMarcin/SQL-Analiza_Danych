@@ -119,6 +119,20 @@ b)
 
 SELECT * FROM tmp_film_rentals
 
+9). Napisz zapytanie, które zwróci kwotę wpłat z filmu w następującym formacie:
+
+film_id,
+kwota wpłat z filmu.
+
+Wskazówka do sprawdzenia: Sprawdź czy wszystkie rental_id są uzupełnione
+
+10). Przygotuj raport, który wyświetli top 10 najchętniej wypożyczanych filmów. Przyjmij następujące założenia biznesowe do przygotowania raportu:
+
+nazwa filmu,
+liczba aktorów, którzy w nim grali,
+kwota przychodu filmu,
+liczba wypożyczeń filmu.
+
 ------------------------------------------------------DATETIME--------------------------------------------------------
 1). Zwróć aktualny czas serwera.
 
